@@ -1,3 +1,8 @@
+import os
+
+# Desabilita avisos de warning do Pandera para importação
+os.environ['DISABLE_PANDERA_IMPORT_WARNING'] = 'True'
+
 """
 Pipeline - Etapa 2: Validar Dados com Pandera
 """
@@ -23,7 +28,7 @@ def criar_schema():
         # - Deve ser único (unique=True)
         # Dica: "cliente_id": Column(int, nullable=False, unique=True),
         
-        "cliente_id": None,  # Substitua None pelo código correto
+        "cliente_id": Column(int, nullable=False, unique=True),
         
         
         # TODO 2: Validar idade
@@ -31,14 +36,14 @@ def criar_schema():
         # - Valores entre 18 e 80
         # Dica: Column(int, Check.in_range(18, 80)),
         
-        "idade": None,  # Substitua None pelo código correto
+        "idade": Column(int, Check.in_range(18, 80)),
         
         
         # TODO 3: Validar renda_mensal
         # - Tipo: float
         # - Valores entre 1000 e 50000
         
-        "renda_mensal": None,  # Substitua None pelo código correto
+        "renda_mensal": Column(float, Check.in_range(1000, 50000)),
         
         
         # Estas validações já estão prontas como exemplo:
@@ -51,7 +56,7 @@ def criar_schema():
         # - Tipo: float
         # - Valores entre 300 e 850
         
-        "score_credito": None,  # Substitua None pelo código correto
+        "score_credito": Column(float, Check.in_range(300, 850)),
         
         
         # TODO 5: Validar respondeu_campanha (target)
@@ -59,7 +64,7 @@ def criar_schema():
         # - Valores permitidos: 0 ou 1
         # Dica: Column(int, Check.isin([0, 1])),
         
-        "respondeu_campanha": None,  # Substitua None pelo código correto
+        "respondeu_campanha": Column(int, Check.isin([0, 1])),
         
     })
     
