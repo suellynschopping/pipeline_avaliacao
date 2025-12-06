@@ -10,7 +10,7 @@ venv/
 .venv/
 
 # Modelos (opcional manter)
-# models/*.pkl
+models/*.pkl
 
 # IDE
 .idea/
