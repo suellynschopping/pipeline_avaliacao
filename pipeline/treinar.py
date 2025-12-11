@@ -54,8 +54,7 @@ def dividir_treino_teste(X, y, tamanho_teste=0.2, random_state=42):
     #           X, y, test_size=tamanho_teste, random_state=random_state
     #       )
     
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=tamanho_teste, random_state=random_state)
-    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=tamanho_teste, random_state=random_state, stratify=y)
     
     # Mostrar tamanhos
     if X_train is not None:

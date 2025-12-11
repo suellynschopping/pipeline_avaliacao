@@ -70,7 +70,30 @@ def explorar_dados(df):
     
     print("=" * 50, end="\n\n")
     
-    
+    # Extra3: Detecção de Outliers
+    print("*" * 50)
+    print("\nOUTLIERS POR COLUNA (CRITÉRIO IQR 1.5)\n")
+    print("*" * 50)
+
+    numericas = df.select_dtypes(include=["int64", "float64"])
+    if not numericas.empty:
+        q1 = numericas.quantile(0.25)
+        q3 = numericas.quantile(0.75)
+        iqr = q3 - q1
+
+        limite_inferior = q1 - 1.5 * iqr
+        limite_superior = q3 + 1.5 * iqr
+
+        mask_outliers = (numericas < limite_inferior) | (numericas > limite_superior)
+        outliers_por_coluna = mask_outliers.sum()
+
+        print(outliers_por_coluna)
+    else:
+        print("Nenhuma coluna numérica encontrada para análise de outliers.")
+
+    print("=" * 50, end="\n\n")
+
+
     # TODO 4: Mostre as 5 primeiras linhas
     print("*" * 50)
     print("\nPrimeiras 5 linhas\n")
