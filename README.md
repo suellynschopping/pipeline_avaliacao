@@ -24,7 +24,11 @@ trabalho_grupo/
 1. Instalar dependências:
 ```bash
 pip install -r requirements.txt
+
+# se for usar mlflow instale o requirements abaixo
+pip install -r requirements_mlflow.txt 
 ```
+
 
 2. Completar os TODOs nos arquivos:
    - `pipeline/carregar.py`
